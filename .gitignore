@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Testing
+test_download/
+
+# secrets
+config.py
+youtube_secrets.json

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .center {
+        height: 70vh;
+        position: relative;
+        text-align: center;
+      }
+      
+    .center form  {
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    input.playlist {
+        border: 3px solid green;
+        font-size: 40px;
+    }
+
+    input.form_button {
+        position: relative;
+        font-size: 40px;
+    }   
+</style>
+<body>
+    
+    <button><a href="{{ url_for('login_spotify') }}">Connect Spotify</a></button>
+    <button><a href="{{ url_for('login_youtube') }}">Connect Youtube</a></button>
+
+    <div class="center">
+        <form action="{{ url_for('convert_spotify_playlist_to_youtube_playlist') }}" method="post">
+            <label for="Spotify Playlist to Youtube Playlist"></label>
+            <input type="text" name="playlist_id" class="playlist" placeholder="Spotify Playlist">
+            <br>
+            <select name="option">
+                <option value="{{options[0]}}" selected>{{ options[0].value }}</option>
+                {% for option in options[1:] %}
+                  <option value="{{option}}">{{ option.value }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Convert" class="form_button">
+        </form>
+    </div>
+    <hr>
+    {% if data %}
+    {{ data }}
+    {% endif %}
+</body>
+</html>
